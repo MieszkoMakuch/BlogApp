@@ -1,32 +1,78 @@
-﻿@model List<BasketballAcademyBlog.Models.Publication>
+
+
+@model List<BasketballAcademyBlog.Models.Publication>
 
 @{
     ViewBag.Title = "List";
 }
-<div class="container">
-    <div class="row">
-        @foreach (var publication in Model)
+<div class="row">
+    <div class="col-md-8">
+        <div class="post-fluid post-medium-vertical">
+                @foreach (var publication in Model)
         {
-            <article class="col-sm-6">
-                <header>
-                    <h2>
-                        <img src="~/Content/images/icon.png" width="45" height="60" />
-                        @Html.ActionLink(@publication.Title, "ReadPost", "Publication", new { @id = publication.Id }, null)
-                    </h2>
-                </header>
-                <p>
-                    @publication.Content.Substring(0, @publication.Content.Length/3)...
-                    @Html.ActionLink("Read more", "ReadPost", "Publication", new { @id = publication.Id }, null)
-                </p>
-                <footer>
-                    <small class="author">
-                        Posted by @publication.Author.FullName
-                        <br>
-                        On Date: @publication.DateTime
-                    </small>
-                </footer>
-            </article>
+
+
+                    <div class="container-fluid post-default">
+                        <div class="container-medium">
+                            <div class="row post-items">
+                                <div class="post-item-banner">
+                                    <img src="@publication.Link" alt="">
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="post-item">
+                                        <div class="post-item-paragraph">
+                                            <div>
+                                                <a href="medium-image-v1-1.html#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
+                                                <a href="medium-image-v1-1.html#" class="mute-text">DESIGN</a>
+                                            </div>
+                                            <h3>                                              
+                                                @Html.ActionLink(@publication.Title, "ReadPost", "Publication", new { @id = publication.Id }, null)
+                                            </h3>
+                                            <p>
+                                                @publication.Content.Substring(0, @publication.Content.Length / 3)...
+                                                @Html.ActionLink("Read more", "ReadPost", "Publication", new { @id = publication.Id }, null)
+                                            </p>
+                                        </div>
+                                        <div class="post-item-info clearfix">
+                                            <div class="pull-left">
+                                                <span>@publication.DateTime</span>&nbsp;&nbsp;&nbsp;&nbsp;By @publication.Author.FullName
+                                            </div>
+                                            <div class="pull-right post-item-social">
+                                                <a href="medium-image-v1-1.html#" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
+                                                <a href="medium-image-v1-1.html#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share" data-original-title="" title=""><i class="fa fa-share-alt"></i></a>
+                                                <a href="medium-image-v1-1.html#" class="post-like"><i class="fa fa-heart"></i><span>28</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    /*<article class="col-sm-6">
+                        <header>
+                            <h2>
+                                <img src="~/content/images/icon.png" width="45" height="60" />
+                                @html.actionlink(@publication.title, "readpost", "publication", new { @id = publication.id }, null)
+                            </h2>
+                        </header>
+                        <p>
+                            @publication.content.substring(0, @publication.content.length/3)...
+                            @html.actionlink("read more", "readpost", "publication", new { @id = publication.id }, null)
+                        </p>
+                        <footer>
+                            <small class="author">
+                                posted by @publication.author.fullname
+                                <br>
+                                on date: @publication.datetime
+                            </small>
+                        </footer>
+                    </article>*/
         }
+
+        </div>
+        </div>
     </div>
-</div>
-       
