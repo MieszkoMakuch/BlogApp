@@ -78,7 +78,7 @@
                     </div>
 
 
-                    <div class="next-prev-post clearfix">
+                    <!--Następny poprzedni post <div class="next-prev-post clearfix">
                         <div class="post-direction">
                             <a href="shortcode-4.html#" class="post-prev">
                                 <span class="post-way"><i class="fa fa-angle-left"></i> prev post</span>
@@ -94,11 +94,11 @@
                             </a>
                             <a href="shortcode-4.html#"><span class="author">by <span>Jared Erondu</span></span></a>
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="author-box">
                         <div class="author">
-                            <a class="author-photo" href="shortcode-4.html#"><img src="assets/img/banner-80.jpg" alt=""></a>
+                            <a class="author-photo" href="shortcode-4.html#"><img src=".../.../Content/assets/img/banner-80.jpg" alt=""></a>
                             <div class="author-body">
                                 <h4 class="author-name">Author: @Model.Author.FullName</h4>
                                 <a href="shortcode-4.html#">view all post</a>
@@ -121,8 +121,20 @@
 
                         
 
-
+                        @if (User.Identity.IsAuthenticated)
+                        {
                         <a class="btn btn-golden" href="#LeaveComment">Leave a comment</a>
+                        }
+                        else
+                        {
+                            <p>
+                                @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                                or
+                                @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                                to comment this post.
+                            </p>
+                            <hr />
+                        }
                         <div class="comment-tab">
                             <a href="shortcode-4.html#" class="comment-info"><i class="fa fa-comments"></i>Comments (@Model.Comments.Count())</a>
                             <i class="i">|</i>
