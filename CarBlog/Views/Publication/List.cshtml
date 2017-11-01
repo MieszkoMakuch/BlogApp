@@ -5,14 +5,23 @@
 @{
     ViewBag.Title = "List";
 }
-<div class="row">
-    <div class="col-md-8">
-        <div class="post-fluid post-medium-vertical">
-                @foreach (var publication in Model)
-        {
+
+<div class="container">
+    <div class="head-text">
+        <h1>Car Blog</h1>
+        <p class="lead-text">Read the latest car news.</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="post-fluid post-medium-vertical">
+                @foreach (var publication in Model.OrderByDescending(i => i.DateTime))
+                {
 
 
-                    <div class="container-fluid post-default">
+                    <div class="container-fluid post-default visible animated fadeInUp">
                         <div class="container-medium">
                             <div class="row post-items">
                                 <div class="post-item-banner">
@@ -25,7 +34,7 @@
                                                 <a href="medium-image-v1-1.html#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
                                                 <a href="medium-image-v1-1.html#" class="mute-text">DESIGN</a>
                                             </div>
-                                            <h3>                                              
+                                            <h3>
                                                 @Html.ActionLink(@publication.Title, "ReadPost", "Publication", new { @id = publication.Id }, null)
                                             </h3>
                                             <p>
@@ -35,7 +44,7 @@
                                         </div>
                                         <div class="post-item-info clearfix">
                                             <div class="pull-left">
-                                                <span>@publication.DateTime</span>&nbsp;&nbsp;&nbsp;&nbsp;By @publication.Author.FullName
+                                                <span>@publication.DateTime</span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;By @publication.Author.FullName
                                             </div>
                                             <div class="pull-right post-item-social">
                                                 <a href="medium-image-v1-1.html#" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
@@ -71,8 +80,9 @@
                             </small>
                         </footer>
                     </article>*/
-        }
+                }
 
-        </div>
+            </div>
         </div>
     </div>
+</div>
