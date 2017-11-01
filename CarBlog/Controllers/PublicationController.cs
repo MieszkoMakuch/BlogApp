@@ -65,7 +65,8 @@ namespace BasketballAcademyBlog.Controllers
             return View();
         }
 
-        //POST Publication/Create      
+        //POST Publication/Create   
+        [ValidateInput(false)]
         [HttpPost]
         [Authorize]
         public ActionResult Create(Publication publication)
@@ -85,6 +86,57 @@ namespace BasketballAcademyBlog.Controllers
                     database.Publications.Add(publication);
                     database.SaveChanges();
                     return RedirectToAction("List");
+                }
+            }
+            return View(publication);
+        }
+
+        //GET Publication/Create
+        [Authorize]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            using (var database = new BlogDbContext())
+            {
+                var publication = database.Publications
+                    .Where(p => p.Id == id)
+                    .Include(a => a.Author)
+                    .Include(p => p.Comments)
+                    .First();
+
+                if (publication == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(publication);
+            }
+        }
+
+        //POST Publication/Edit   
+        [ValidateInput(false)]
+        [HttpPost]
+        [Authorize]
+        public ActionResult Edit(Publication publication)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var database = new BlogDbContext())
+                {
+                    var publicationDb = database.Publications
+                        .Where(p => p.Id == publication.Id)
+                        .Include(a => a.Author)
+                        .Include(p => p.Comments)
+                        .First();
+
+                    publicationDb.Content = publication.Content;
+                    publicationDb.Title = publication.Title;
+                    publicationDb.Link = publication.Link;
+                    database.SaveChanges();
+                    return View();
                 }
             }
             return View(publication);
