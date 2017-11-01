@@ -58,14 +58,14 @@ namespace BasketballAcademyBlog.Migrations
                 RequireUppercase = false,
             };
 
-            var admin = new ApplicationUser
+            var user = new ApplicationUser
             {
                 UserName = email,
                 FullName = fullName,
                 Email = email,
             };
 
-            var result = userManager.Create(admin, password);
+            var result = userManager.Create(user, password);
 
             if(!result.Succeeded)
             {
