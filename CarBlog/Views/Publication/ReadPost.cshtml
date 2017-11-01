@@ -11,110 +11,6 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <article class="col-sm-4">
-            <header>
-                <h2>
-                    @Model.Title
-                </h2>
-            </header>
-            <p>
-                @Html.Raw(Model.Content.Replace(Environment.NewLine, "<br/>"))
-            </p>
-            <small class="author">
-                Posted by @Model.Author.FullName
-                <br>
-                Date: @Model.DateTime
-            </small>
-            <footer class="pull-right">
-                @if (User.IsInRole("Admin"))
-            {
-                    @Html.ActionLink("Delete", "Delete", "Publication", new { @id = Model.Id }, new { @class = "btn btn-danger btn-xs" })
-                    @Html.ActionLink("Edit", "Edit", "Publication", new { @id = Model.Id }, new { @class = "btn btn-danger btn-xs" })
-
-                }
-                @Html.ActionLink("Back", "Index", "Publication", null, new { @class = "btn btn-default btn-xs" })
-            </footer>
-        </article>
-
-        <div class="col-sm-6">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <iframe width="560"
-                        height="315"
-                        src="@Model.Link"
-                        frameborder="0"
-                        allowfullscreen></iframe>
-            }
-            else
-            {
-                <hr />
-                <p class="alert-dismissible">
-                    @Html.ActionLink("LOG IN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-                    OR 
-                    @Html.ActionLink("REGISTER", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
-                    <br> FOR REACHING WHOLE RESOURCES IN THIS POST
-                </p>
-                <hr/>
-            }
-        </div>
-    </div>
-
-    <div class="col-md-12">
-        @if (Model.Comments.Count != 0)
-        {
-            <h4>Comments:</h4>
-            <div class="blog-post-comments">
-                @foreach (var comment in Model.Comments.OrderBy(x => x.CreatedDate))
-                {
-                    <blockquote>
-                        <h4 class="comment-caption text-info">@comment.Name</h4>
-                        <p>@Html.Encode(comment.Body)</p>
-                        <small>@comment.CreatedDate</small>
-                        @if (comment.isAuthor(User.Identity.Name, comment) || User.IsInRole("Admin"))
-                        {
-                            @Html.ActionLink("Delete comment", "DeleteComment", new { id = comment.ID }, new { @class = "text-danger" })
-                        }
-                    </blockquote>
-                }
-            </div>
-        }
-        @if (User.Identity.IsAuthenticated)
-        {
-            <div class="comment-editor">
-                @using (Html.BeginForm("Comment", "Publication", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="form-horizontal">
-                        <h4>Add Comment</h4>
-                        @User.Identity.Name
-                        <input type="hidden" value="@Model.Id" name="postID" />
-                        <div class="form-group">
-                            <div class="col-sm-6">
-                                <textarea class="form-control text-box multi-line" id="Message" name="Message" rows="3"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-6">
-                                <input type="submit" value="Submit" class="btn btn-success" />
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        }
-    </div>
-</div>
-
-
-
-
-
-
-
 <section class="post-fluid">
     <div class="container-fluid">
         <div class="container">
@@ -138,19 +34,19 @@
                             </h2>
 
                             <p>
-                                @Html.Raw(Model.Content.Replace(Environment.NewLine, "<br/>"))                           
+                                @Html.Raw(Model.Content.Replace(Environment.NewLine, "<br/>"))
                             </p>
                             <div class="carusel-box">
                                 <div class="carousel-title">ISABEL'S HOME OFFICE</div>
                                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner" role="listbox">
-                                        <div class="item">
+                                        <div class="item" style="height: 472px;">
                                             <img src="assets/img/home-office-1.jpg" alt="First slide">
                                         </div>
                                         <div class="item" style="height: 472px;">
                                             <img src="assets/img/home-office-2.jpg" alt="Second slide">
                                         </div>
-                                        <div class="item active">
+                                        <div class="item active" style="height: 472px;">
                                             <img src="assets/img/home-office-3.jpg" alt="Second slide">
                                         </div>
                                     </div>
@@ -181,7 +77,7 @@
                         </div>
                     </div>
 
-                  
+
                     <div class="next-prev-post clearfix">
                         <div class="post-direction">
                             <a href="shortcode-4.html#" class="post-prev">
@@ -204,14 +100,14 @@
                         <div class="author">
                             <a class="author-photo" href="shortcode-4.html#"><img src="assets/img/banner-80.jpg" alt=""></a>
                             <div class="author-body">
-                                <h4 class="author-name">@Model.Author.FullName</h4>
+                                <h4 class="author-name">Author: @Model.Author.FullName</h4>
                                 <a href="shortcode-4.html#">view all post</a>
                             </div>
                             <div class="author-connection">
                                 <a href="shortcode-4.html#"><i class="fa fa-twitter"></i></a>
                                 <a href="shortcode-4.html#"><i class="fa fa-envelope"></i></a>
                                 @if (User.IsInRole("Admin"))
-                                   {
+                                {
                                     @Html.ActionLink("Delete", "Delete", "Publication", new { @id = Model.Id }, new { @class = "btn btn-danger btn-xs" })
                                     @Html.ActionLink("Edit", "Edit", "Publication", new { @id = Model.Id }, new { @class = "btn btn-danger btn-xs" })
 
@@ -222,106 +118,68 @@
 
                     <div class="comment-box">
 
+
+                        
+
+
+                        <a class="btn btn-golden" href="#LeaveComment">Leave a comment</a>
+                        <div class="comment-tab">
+                            <a href="shortcode-4.html#" class="comment-info"><i class="fa fa-comments"></i>Comments (@Model.Comments.Count())</a>
+                            <i class="i">|</i>
+                            <a href="shortcode-4.html#" class="comment-info"> Show all</a>
+                        </div>
                         @if (Model.Comments.Count != 0)
                         {
-                            <h4>Comments:</h4>
-                            <div class="blog-post-comments">
+                            <div class="comment-block">
                                 @foreach (var comment in Model.Comments.OrderBy(x => x.CreatedDate))
-                                  {
-                                    <blockquote>
-                                        <h4 class="comment-caption text-info">@comment.Name</h4>
-                                        <p>@Html.Encode(comment.Body)</p>
-                                        <small>@comment.CreatedDate</small>
-                                        @if (comment.isAuthor(User.Identity.Name, comment) || User.IsInRole("Admin"))
+                                {
+                                    <div class="comment-item">
+                                        <a class="comment-photo" href="shortcode-4.html#">
+                                            <img src="../../Content/assets/img/banner-82.jpg" alt="">
+                                        </a>
+                                        <div class="comment-body">
+                                            <h6 class="comment-heading">@comment.Name&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;<span class="comment-date">@comment.CreatedDate</span></h6>
+                                            <p class="comment-text">
+                                                @Html.Encode(comment.Body)
+                                            </p>
+                                            @if (comment.isAuthor(User.Identity.Name, comment) || User.IsInRole("Admin"))
+                                            {
+                                                @Html.ActionLink("Delete comment", "DeleteComment", new { id = comment.ID }, new { @class = "text-danger" })
+                                            }
+                                        </div>
+                                    </div>
+                                }                               
+                                @if (User.Identity.IsAuthenticated)
+                                {
+
+                                    <div id="LeaveComment" class="comment-form main-comment-form">
+                                        @using (Html.BeginForm("Comment", "Publication", FormMethod.Post))
                                         {
-                                            @Html.ActionLink("Delete comment", "DeleteComment", new { id = comment.ID }, new { @class = "text-danger" })
+                                            @Html.AntiForgeryToken()
+
+                                            <div class="form-horizontal">
+                                                <input type="hidden" value="@Model.Id" name="postID" />
+                                                <h4>Add Comment3</h4>
+                                                @User.Identity.Name
+                                                <textarea class="comment-textarea" 
+                                                            placeholder="Leave a comment..." 
+                                                            id="Message" name="Message">
+                                                </textarea>
+                                                <div class="at-focus">
+                                                    <input class="comment-input" placeholder="Name: @User.Identity.Name" type="text" readonly>
+                                                    <input class="comment-input" placeholder="Date: @DateTime.Now" type="text" readonly>     
+                                                    <input type="submit" value="Submit" class="btn comment-submit" />                                            
+                                                </div>
+                                            </div>
                                         }
-                                    </blockquote>
-                                }
-                            </div>
-                        }
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <div class="comment-editor">
-                                @using (Html.BeginForm("Comment", "Publication", FormMethod.Post))
-                                 {
-                                    @Html.AntiForgeryToken()
-
-                                    <div class="form-horizontal">
-                                        <h4>Add Comment</h4>
-                                        @User.Identity.Name
-                                        <input type="hidden" value="@Model.Id" name="postID" />
-                                        <div class="form-group">
-                                            <div class="col-sm-6">
-                                                <textarea class="form-control text-box multi-line" id="Message" name="Message" rows="3"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-6">
-                                                <input type="submit" value="Submit" class="btn btn-success" />
-                                            </div>
-                                        </div>
                                     </div>
                                 }
+
+
                             </div>
                         }
-
-                        <a class="btn btn-golden" href="shortcode-4.html#">Leave a comment</a>
-                        <div class="comment-tab">
-                            <a href="shortcode-4.html#" class="comment-info">Comments (28)</a>
-                            <i class="i">|</i>
-                            <a href="shortcode-4.html#" class="comment-info"><i class="fa fa-comments"></i> Show all</a>
-                        </div>
-
-                        <div class="comment-block">
-
-                            <div class="comment-item">
-                                <a class="comment-photo" href="shortcode-4.html#">
-                                    <img src="assets/img/banner-82.jpg" alt="">
-                                </a>
-                                <div class="comment-body">
-                                    <h6 class="comment-heading">Matthew L. Fisher&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;<span class="comment-date">2 days ago</span></h6>
-                                    <p class="comment-text">I am about like you. First: paper and after: photoshop (sometime).</p>
-                                    <a href="shortcode-4.html#" class="comment-reply active-comment"><i class="reply-icon"></i> Reply</a>
-                                </div>
-                            </div>
-
-                            <div class="comment-item">
-                                <a class="comment-photo" href="shortcode-4.html#">
-                                    <img src="assets/img/banner-83.jpg" alt="">
-                                </a>
-                                <div class="comment-body">
-                                    <h6 class="comment-heading">Lauren Bonk&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;<span class="comment-date">2 days ago</span></h6>
-                                    <p class="comment-text">I’m so glad you shared this. I always start with lots of paper as well, move into Photoshop to give the document a basic layout, then zoom right in to start tackling my favorite piece trying to get it just right.<br><br>I’m not saying this is the right way—perhaps, like you, I should move from basic sketches to basic digital shapes to see if the design holds together when zoomed out.</p>
-                                    <a href="shortcode-4.html#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-                                </div>
-                            </div>
-
-                            <div class="comment-item">
-                                <a class="comment-photo" href="shortcode-4.html#">
-                                    <img src="assets/img/banner-84.jpg" alt="">
-                                </a>
-                                <div class="comment-body">
-                                    <h6 class="comment-heading">Tony Bui&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;<span class="comment-date">4 days ago</span></h6>
-                                    <p class="comment-text">I used to wireframe in photoshop, but it's difficult for most clients to understand what they're signing off unless they can interact with it. </p>
-                                    <a href="shortcode-4.html#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-                                </div>
-                            </div>
-
-
-                            <div class="comment-form main-comment-form">
-                                <form>
-                                    <textarea class="comment-textarea" placeholder="Leave a comment..."></textarea>
-                                    <div class="at-focus">
-                                        <input class="comment-input" placeholder="Name" type="text">
-                                        <input class="comment-input" placeholder="or Email" type="text">
-                                        <button class="comment-submit">Post Comment</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
