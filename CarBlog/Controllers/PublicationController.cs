@@ -37,7 +37,7 @@ namespace BasketballAcademyBlog.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("List");
             }
 
             using (var database = new BlogDbContext())
@@ -213,7 +213,7 @@ namespace BasketballAcademyBlog.Controllers
 
             database.Comments.Add(comment);
             database.SaveChanges();
-            return RedirectToAction("");
+            return RedirectToAction("ReadPost/" + publication.Id);
         }
 
         [Authorize]
@@ -226,10 +226,12 @@ namespace BasketballAcademyBlog.Controllers
                 {
                     return HttpNotFound();
                 }
+                Publication publication = comment.Publication;
+               
                 database.Comments.Remove(comment);
                 database.SaveChanges();
 
-                return RedirectToAction("");
+                return RedirectToAction("ReadPost/" + publication.Id);
             }
         }
     }
