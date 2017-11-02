@@ -20,3 +20,8 @@ View a working online demo on Microsoft Azure (it may take a few seconds to depl
 
 ### Single Post
 [![alt text](https://blogapp20171101075715.azurewebsites.net/Content/assets/img/screencapture-blogapp20171101075715-azurewebsites-net-Publication-ReadPost-2-1509633671073.png "Main page")](https://blogapp20171101075715.azurewebsites.net/)
+
+## Technologies
+* ASP.NET MVC
+* Entity Framework
+* Twitter Bootstrapd
