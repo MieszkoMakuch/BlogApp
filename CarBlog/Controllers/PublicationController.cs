@@ -180,16 +180,15 @@ namespace BasketballAcademyBlog.Controllers
 
             using (var database = new BlogDbContext())
             {
-                var publication = database.Publications
-                    .Where(p => p.Id == id)
+                var publication = 
+                    (from p in database.Publications
+                    where p.Id == id
+                    select p)
                     .Include(p => p.Author)
                     .Include(p => p.Comments)
                     .First();
 
-                if (publication == null)
-                {
-                    return HttpNotFound();
-                }
+                if (publication == null) { return HttpNotFound(); }
 
                 database.Publications.Remove(publication);
                 database.SaveChanges();
