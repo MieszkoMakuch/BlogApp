@@ -10,7 +10,7 @@ View a working online demo on Microsoft Azure (it may take a few seconds to depl
 ## Technologies
 * ASP.NET MVC
 * Entity Framework
-* Twitter Bootstrapd
+* Twitter Bootstrap
 
 ## Implemented functionality
 
