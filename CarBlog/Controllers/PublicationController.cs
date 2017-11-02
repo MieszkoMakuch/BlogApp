@@ -136,7 +136,7 @@ namespace BasketballAcademyBlog.Controllers
                     publicationDb.Title = publication.Title;
                     publicationDb.Link = publication.Link;
                     database.SaveChanges();
-                    return View();
+                    return RedirectToAction("ReadPost/" + publication.Id);
                 }
             }
             return View(publication);
