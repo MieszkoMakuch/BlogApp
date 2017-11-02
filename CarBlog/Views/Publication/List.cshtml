@@ -9,7 +9,8 @@
 <div class="container">
     <div class="head-text">
         <h1>Car Blog</h1>
-        <p class="lead-text">Read the latest car news.</p>
+        <p class="lead-text">Exemplary blog created with BlogApp.</p>
+        <a href="https://github.com/MieszkoMakuch/BlogApp" target="_blank" style=" font-size: 50px; "><i class="fa fa-github"></i></a>
     </div>
 </div>
 
@@ -57,32 +58,48 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-                    /*<article class="col-sm-6">
-                        <header>
-                            <h2>
-                                <img src="~/content/images/icon.png" width="45" height="60" />
-                                @html.actionlink(@publication.title, "readpost", "publication", new { @id = publication.id }, null)
-                            </h2>
-                        </header>
-                        <p>
-                            @publication.content.substring(0, @publication.content.length/3)...
-                            @html.actionlink("read more", "readpost", "publication", new { @id = publication.id }, null)
-                        </p>
-                        <footer>
-                            <small class="author">
-                                posted by @publication.author.fullname
-                                <br>
-                                on date: @publication.datetime
-                            </small>
-                        </footer>
-                    </article>*/
                 }
 
             </div>
         </div>
+        <aside class="col-md-4">
+
+            <div class="laread-right">
+
+                <div class="laread-list movie-bar">
+                    <a>
+                        <img src="../../Content/assets/img/entityframework.png" alt="">
+                    </a>
+                </div>
+
+                <ul class="laread-list">
+                    <li class="title"><b>ABOUT THE PROJECT</b></li>
+                    <li class="text-bar">
+                        <p>
+                            BlogApp is a simple web blogging application implemented using ASP.NET MVC and Entity Framework.
+                        </p>
+                        <p>
+                            <b>Technologies used:</b>
+                            <li class="bar-tags">
+                                <a>ASP.NET MVC </a>
+                                <a>Entity Framework </a>
+                                <a>Twitter Bootstrap </a>
+                            </li>
+                    </p>
+                    </li>
+                </ul>
+
+                <ul class="laread-list social-bar">
+                    <li class="title">GITHUB REPOSITORY</li>
+                    <a href="https://github.com/MieszkoMakuch/blogapp" target="_blank">BlogApp GitHub repository</a>
+                    <br/><br/><p>Check out my other repositories:</p>
+                    <li class="social-icons">
+                        <a href="https://github.com/MieszkoMakuch/" target="_blank"><i class="fa fa-github"></i></a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </aside>
     </div>
 </div>

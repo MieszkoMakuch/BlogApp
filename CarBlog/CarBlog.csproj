@@ -362,6 +362,7 @@
     <Content Include="Content\assets\img\email-twitter.png" />
     <Content Include="Content\assets\img\email_bottom_logo.png" />
     <Content Include="Content\assets\img\email_logo.jpg" />
+    <Content Include="Content\assets\img\entityframework.png" />
     <Content Include="Content\assets\img\evmet%402x.png" />
     <Content Include="Content\assets\img\favicon.ico" />
     <Content Include="Content\assets\img\gallery-01.jpg" />
