@@ -1,4 +1,4 @@
-﻿@model BasketballAcademyBlog.Models.Publication
+﻿@model BlogApp.Models.Publication
 
 @{
     ViewBag.Title = "ReadPost";
@@ -48,6 +48,7 @@
                                 <a >view all post</a>
                             </div>
                             <div class="author-connection">
+
                                 <a ><i class="fa fa-twitter"></i></a>
                                 <a ><i class="fa fa-envelope"></i></a>
                                 @if (User.IsInRole("Admin"))

@@ -1,11 +1,11 @@
-﻿using BasketballAcademyBlog.Migrations;
-using BasketballAcademyBlog.Models;
+﻿using BlogApp.Migrations;
+using BlogApp.Models;
 using Microsoft.Owin;
 using Owin;
 using System.Data.Entity;
 
-[assembly: OwinStartupAttribute(typeof(BasketballAcademyBlog.Startup))]
-namespace BasketballAcademyBlog
+[assembly: OwinStartupAttribute(typeof(BlogApp.Startup))]
+namespace BlogApp
 {
     public partial class Startup
     {

@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using BasketballAcademyBlog.Models;
+using BlogApp.Models;
 
-namespace BasketballAcademyBlog.Controllers
+namespace BlogApp.Controllers
 {
     [Authorize]
     public class AccountController : Controller

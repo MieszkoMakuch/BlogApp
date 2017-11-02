@@ -1,4 +1,4 @@
-﻿namespace BasketballAcademyBlog.Migrations
+﻿namespace BlogApp.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -9,7 +9,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Globalization;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BasketballAcademyBlog.Models.BlogDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<BlogApp.Models.BlogDbContext>
     {
         public Configuration()
         {
@@ -18,7 +18,7 @@
             ContextKey = "BlogApp.Models.BlogDbContext";
         }
 
-        protected override void Seed(BasketballAcademyBlog.Models.BlogDbContext context)
+        protected override void Seed(BlogApp.Models.BlogDbContext context)
         {
             if (!context.Roles.Any())
             {

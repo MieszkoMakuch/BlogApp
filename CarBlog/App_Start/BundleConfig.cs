@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace BasketballAcademyBlog
+namespace BlogApp
 {
     public class BundleConfig
     {
