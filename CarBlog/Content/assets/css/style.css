@@ -10240,7 +10240,6 @@ only screen and (                min-resolution: 2dppx){
 		background: url("../img/logo-black@2x.png") no-repeat center center;
 		background-size: 80px 80px;
 		height: 80px;
-		width: 80px;
 		margin: 0 auto;
 	}
 	.footer-logo img,
