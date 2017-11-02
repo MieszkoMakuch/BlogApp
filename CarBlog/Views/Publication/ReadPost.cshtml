@@ -140,10 +140,10 @@
                             <i class="i">|</i>
                             <a href="shortcode-4.html#" class="comment-info"> Show all</a>
                         </div>
-                        @if (Model.Comments.Count != 0)
-                        {
-                            <div class="comment-block">
-                                @foreach (var comment in Model.Comments.OrderBy(x => x.CreatedDate))
+                        <div class="comment-block">
+                            @if (Model.Comments.Count != 0)
+                            {
+                                foreach (var comment in Model.Comments.OrderBy(x => x.CreatedDate))
                                 {
                                     <div class="comment-item">
                                         <a class="comment-photo" href="shortcode-4.html#">
@@ -160,36 +160,37 @@
                                             }
                                         </div>
                                     </div>
-                                }                               
-                                @if (User.Identity.IsAuthenticated)
-                                {
-
-                                    <div id="LeaveComment" class="comment-form main-comment-form">
-                                        @using (Html.BeginForm("Comment", "Publication", FormMethod.Post))
-                                        {
-                                            @Html.AntiForgeryToken()
-
-                                            <div class="form-horizontal">
-                                                <input type="hidden" value="@Model.Id" name="postID" />
-                                                <h4>Add Comment3</h4>
-                                                @User.Identity.Name
-                                                <textarea class="comment-textarea" 
-                                                            placeholder="Leave a comment..." 
-                                                            id="Message" name="Message">
-                                                </textarea>
-                                                <div class="at-focus">
-                                                    <input class="comment-input" placeholder="Name: @User.Identity.Name" type="text" readonly>
-                                                    <input class="comment-input" placeholder="Date: @DateTime.Now" type="text" readonly>     
-                                                    <input type="submit" value="Submit" class="btn comment-submit" />                                            
-                                                </div>
-                                            </div>
-                                        }
-                                    </div>
                                 }
 
+                            }
 
-                            </div>
-                        }
+                            @if (User.Identity.IsAuthenticated)
+                            {
+
+                                <div id="LeaveComment" class="comment-form main-comment-form">
+                                    @using (Html.BeginForm("Comment", "Publication", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <div class="form-horizontal">
+                                            <input type="hidden" value="@Model.Id" name="postID" />
+                                            <h4>Add Comment3</h4>
+                                            @User.Identity.Name
+                                            <textarea class="comment-textarea"
+                                                      placeholder="Leave a comment..."
+                                                      id="Message" name="Message">
+                                                </textarea>
+                                            <div class="at-focus">
+                                                <input class="comment-input" placeholder="Name: @User.Identity.Name" type="text" readonly>
+                                                <input class="comment-input" placeholder="Date: @DateTime.Now" type="text" readonly>
+                                                <input type="submit" value="Submit" class="btn comment-submit" />
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+
                     </div>
 
                 </div>
