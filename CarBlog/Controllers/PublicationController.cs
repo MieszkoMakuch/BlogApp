@@ -25,6 +25,7 @@ namespace BasketballAcademyBlog.Controllers
                 var publications = database
                     .Publications
                     .Include(p => p.Author)
+                    .Include(p => p.Comments)
                     .ToList();
 
                 return View(publications);

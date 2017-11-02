@@ -48,9 +48,8 @@
                                                 <span>@publication.DateTime</span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;By @publication.Author.FullName
                                             </div>
                                             <div class="pull-right post-item-social">
-                                                <a href="medium-image-v1-1.html#" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
-                                                <a href="medium-image-v1-1.html#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share" data-original-title="" title=""><i class="fa fa-share-alt"></i></a>
-                                                <a href="medium-image-v1-1.html#" class="post-like"><i class="fa fa-heart"></i><span>28</span></a>
+                                                <a href="@Url.Action("ReadPost", "Publication", new { @id = publication.Id }, null)" ><i class="fa fa-eye"></i></a>
+                                                <a href="@Url.Action("ReadPost", "Publication", new { @id = publication.Id }, null)#comments"><i class="fa fa-comments"></i>@publication.Comments.Count()</a>
                                             </div>
                                         </div>
                                     </div>
