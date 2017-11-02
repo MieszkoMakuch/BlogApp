@@ -17,47 +17,83 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
+
+            <div class="tag-title">
+                <div class="container">
+                    <p class="tags" id="post-titles">
+                        @foreach (var author in Model
+                            .Select(a => a.Author)
+                            .Distinct()
+                            .OrderBy(i => i.FullName))
+                        {
+                            <a data-filter=".pt-@author.Id">@author.FullName</a>
+                        }
+                        <a data-filter="*" class="unfilter hide">all</a>
+                    </p>
+                </div>
+            </div>
+            <button type="button" class="remove-navbar"><i class="fa fa-times"></i></button>
+
             <div class="post-fluid post-medium-vertical">
-                @foreach (var publication in Model.OrderByDescending(i => i.DateTime))
-                {
-
-
-                    <div class="container-fluid post-default visible animated fadeInUp">
-                        <div class="container-medium">
-                            <div class="row post-items">
-                                <div class="post-item-banner">
-                                    <img src="@publication.Link" alt="">
+                <ul class="post-title-list clearfix">
+                    @foreach (var publication in Model.OrderByDescending(i => i.DateTime))
+                    {
+                        <li class="pt-@publication.AuthorId">
+                            <div>
+                                <h5>
+                                    <i class="fa fa-file-text-o"></i>
+                                    <a>@publication.Title</a>
+                                </h5>
+                                <div class="post-subinfo">
+                                    <span>@publication.DateTime</span>   •   
+                                    <span>@publication.Comments.Count() Comments</span>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="post-item">
-                                        <div class="post-item-paragraph">
-                                            <div>
-                                                <a  class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
-                                                <a  class="mute-text">DESIGN</a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <ul class="post-title-list>
+                    @foreach (var publication in Model.OrderByDescending(i => i.DateTime))
+                    {
+
+
+                        <li class="container-fluid post-default visible animated fadeInUp pt-@publication.AuthorId">
+                            <div class="container-medium">
+                                <div class="row post-items">
+                                    <div class="post-item-banner">
+                                        <img src="@publication.Link" alt="">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="post-item">
+                                            <div class="post-item-paragraph">
+                                                <div>
+                                                    <a class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
+                                                    <a class="mute-text">DESIGN</a>
+                                                </div>
+                                                <h3>
+                                                    @Html.ActionLink(@publication.Title, "ReadPost", "Publication", new { @id = publication.Id }, null)
+                                                </h3>
+                                                <p>
+                                                    @publication.Content.Substring(0, @publication.Content.Length / 3)...
+                                                    @Html.ActionLink("Read more", "ReadPost", "Publication", new { @id = publication.Id }, null)
+                                                </p>
                                             </div>
-                                            <h3>
-                                                @Html.ActionLink(@publication.Title, "ReadPost", "Publication", new { @id = publication.Id }, null)
-                                            </h3>
-                                            <p>
-                                                @publication.Content.Substring(0, @publication.Content.Length / 3)...
-                                                @Html.ActionLink("Read more", "ReadPost", "Publication", new { @id = publication.Id }, null)
-                                            </p>
-                                        </div>
-                                        <div class="post-item-info clearfix">
-                                            <div class="pull-left">
-                                                <span>@publication.DateTime</span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;By @publication.Author.FullName
-                                            </div>
-                                            <div class="pull-right post-item-social">
-                                                <a href="@Url.Action("ReadPost", "Publication", new { @id = publication.Id }, null)" ><i class="fa fa-eye"></i></a>
-                                                <a href="@Url.Action("ReadPost", "Publication", new { @id = publication.Id }, null)#comments"><i class="fa fa-comments"></i>@publication.Comments.Count()</a>
+                                            <div class="post-item-info clearfix">
+                                                <div class="pull-left">
+                                                    <span>@publication.DateTime</span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;By @publication.Author.FullName
+                                                </div>
+                                                <div class="pull-right post-item-social">
+                                                    <a href="@Url.Action("ReadPost", "Publication", new { @id = publication.Id }, null)"><i class="fa fa-eye"></i></a>
+                                                    <a href="@Url.Action("ReadPost", "Publication", new { @id = publication.Id }, null)#comments"><i class="fa fa-comments"></i>@publication.Comments.Count()</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                }
+                        </li>
+                    }
+                </ul>
 
             </div>
         </div>
