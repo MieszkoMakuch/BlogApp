@@ -20,11 +20,3 @@ View a working online demo on Microsoft Azure (it may take a few seconds to depl
 
 ### Single Post
 [![alt text](https://blogapp20171101075715.azurewebsites.net/Content/assets/img/screencapture-blogapp20171101075715-azurewebsites-net-Publication-ReadPost-2-1509633671073.png "Main page")](https://blogapp20171101075715.azurewebsites.net/)
-
-SocialGoal is a social networking web app for socializing your goals and strategies with people. The primary objective of the SocialGoal app is to provide a learning app for building real-world web apps with ASP.NET MVC 5 and EF 6 Code First. The application architecture is inspired from [EFMVC](http://efmvc.codeplex.com/). SocialGoal is developed by [Marlabs](http://www.marlabs.com).
-
-
-## Technologies
-* ASP.NET MVC
-* Entity Framework
-* Twitter Bootstrapd
