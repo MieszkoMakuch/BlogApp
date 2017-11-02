@@ -5,7 +5,10 @@
 }
 
 <div class="container">
-        <h2>Delete Post</h2>
+    <h2 style="
+    text-align: center;
+    margin-top: 60px;
+    ">Delete Post</h2>
         @using (Html.BeginForm("Delete", "Publication", FormMethod.Post, new { @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
