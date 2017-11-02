@@ -37,14 +37,13 @@
                             </p>
 
                         </div>
-                    </div>fv
+                    </div>
 
                     <div class="author-box">
                         <div class="author">
                             <a class="author-photo" ><img src="../../Content/assets/img/banner-80.jpg" alt=""></a>
                             <div class="author-body">
                                 <h4 class="author-name">Author: @Model.Author.FullName</h4>
-                                <a >view all post</a>
                             </div>
                             <div class="author-connection">
 
@@ -81,8 +80,6 @@
                         }
                         <div class="comment-tab">
                             <a  class="comment-info"><i class="fa fa-comments"></i>Comments (@Model.Comments.Count())</a>
-                            <i class="i">|</i>
-                            <a  class="comment-info"> Show all</a>
                         </div>
                         <div class="comment-block">
                             @if (Model.Comments.Count != 0)
