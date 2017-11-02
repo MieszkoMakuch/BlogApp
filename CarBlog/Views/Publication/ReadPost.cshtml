@@ -29,7 +29,7 @@
 
                         <div class="post-item-paragraph">
                             <h2>
-                                <a href="shortcode-4.html#" class="quick-read"><i class="fa fa-eye"></i></a>
+                                <a  class="quick-read"><i class="fa fa-eye"></i></a>
                                 @Model.Title
                             </h2>
 
@@ -42,14 +42,14 @@
 
                     <div class="author-box">
                         <div class="author">
-                            <a class="author-photo" href="shortcode-4.html#"><img src="../../Content/assets/img/banner-80.jpg" alt=""></a>
+                            <a class="author-photo" ><img src="../../Content/assets/img/banner-80.jpg" alt=""></a>
                             <div class="author-body">
                                 <h4 class="author-name">Author: @Model.Author.FullName</h4>
-                                <a href="shortcode-4.html#">view all post</a>
+                                <a >view all post</a>
                             </div>
                             <div class="author-connection">
-                                <a href="shortcode-4.html#"><i class="fa fa-twitter"></i></a>
-                                <a href="shortcode-4.html#"><i class="fa fa-envelope"></i></a>
+                                <a ><i class="fa fa-twitter"></i></a>
+                                <a ><i class="fa fa-envelope"></i></a>
                                 @if (User.IsInRole("Admin"))
                                 {
                                     @Html.ActionLink("Delete", "Delete", "Publication", new { @id = Model.Id }, new { @class = "btn btn-danger btn-xs" })
@@ -80,9 +80,9 @@
                             <hr />
                         }
                         <div class="comment-tab">
-                            <a href="shortcode-4.html#" class="comment-info"><i class="fa fa-comments"></i>Comments (@Model.Comments.Count())</a>
+                            <a  class="comment-info"><i class="fa fa-comments"></i>Comments (@Model.Comments.Count())</a>
                             <i class="i">|</i>
-                            <a href="shortcode-4.html#" class="comment-info"> Show all</a>
+                            <a  class="comment-info"> Show all</a>
                         </div>
                         <div class="comment-block">
                             @if (Model.Comments.Count != 0)
@@ -90,7 +90,7 @@
                                 foreach (var comment in Model.Comments.OrderBy(x => x.CreatedDate))
                                 {
                                     <div class="comment-item">
-                                        <a class="comment-photo" href="shortcode-4.html#">
+                                        <a class="comment-photo" >
                                             <img src="../../Content/assets/img/banner-82.jpg" alt="">
                                         </a>
                                         <div class="comment-body">
