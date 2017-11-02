@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace BasketballAcademyBlog.Models
+namespace BlogApp.Models
 {
     public class Publication
     {
@@ -27,6 +27,10 @@ namespace BasketballAcademyBlog.Models
 
         [ForeignKey("Author")]
         public string AuthorId { get; set; }
+
+
+       // [ForeignKey("Blog")]
+       // public string BlogId { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
 

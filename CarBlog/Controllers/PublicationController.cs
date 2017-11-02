@@ -1,4 +1,4 @@
-﻿using BasketballAcademyBlog.Models;
+﻿using BlogApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,11 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity.Infrastructure;
 
-namespace BasketballAcademyBlog.Controllers
+namespace BlogApp.Controllers
 {
     public class PublicationController : Controller
     {
+
+        String blogUrl = "carblog";
         // GET: Publication
         public ActionResult Index()
         {
@@ -24,6 +27,7 @@ namespace BasketballAcademyBlog.Controllers
             {
                 var publications = database
                     .Publications
+                    .Where(p => p.BlogId == blogUrl)
                     .Include(p => p.Author)
                     .ToList();
 
@@ -43,10 +47,10 @@ namespace BasketballAcademyBlog.Controllers
             using (var database = new BlogDbContext())
             {
                 var publication = database
+                    .Blogs
+                    .FirstOrDefault(null)    
                     .Publications
                     .Where(p => p.Id == id)
-                    .Include(p => p.Author)
-                    .Include(p => p.Comments)
                     .First();
 
                 if (publication == null)
@@ -83,7 +87,10 @@ namespace BasketballAcademyBlog.Controllers
                     publication.AuthorId = authorId;
                     publication.DateTime = DateTime.Now;
 
-                    database.Publications.Add(publication);
+                    database
+                        .Blogs
+                        .FirstOrDefault(null)    
+                        .Publications.Add(publication);
                     database.SaveChanges();
                     return RedirectToAction("List");
                 }
@@ -102,10 +109,11 @@ namespace BasketballAcademyBlog.Controllers
 
             using (var database = new BlogDbContext())
             {
-                var publication = database.Publications
+                var publication = database
+                    .Blogs
+                    .FirstOrDefault(null)    
+                    .Publications
                     .Where(p => p.Id == id)
-                    .Include(a => a.Author)
-                    .Include(p => p.Comments)
                     .First();
 
                 if (publication == null)
@@ -126,11 +134,11 @@ namespace BasketballAcademyBlog.Controllers
             {
                 using (var database = new BlogDbContext())
                 {
-                    var publicationDb = database.Publications
-                        .Where(p => p.Id == publication.Id)
-                        .Include(a => a.Author)
-                        .Include(p => p.Comments)
-                        .First();
+                    var publicationDb = database
+                        .Blogs
+                        .First()
+                        .Publications
+                        .First(p => p.Id == publication.Id);
 
                     publicationDb.Content = publication.Content;
                     publicationDb.Title = publication.Title;
@@ -153,10 +161,11 @@ namespace BasketballAcademyBlog.Controllers
 
             using (var database = new BlogDbContext())
             {
-                var publication = database.Publications
+                var publication = database
+                    .Blogs
+                    .FirstOrDefault(null)    
+                    .Publications
                     .Where(p => p.Id == id)
-                    .Include(a => a.Author)
-                    .Include(p => p.Comments)
                     .First();
 
                 if (publication == null)
@@ -179,22 +188,26 @@ namespace BasketballAcademyBlog.Controllers
 
             using (var database = new BlogDbContext())
             {
-                var publication = database.Publications
-                    .Where(p => p.Id == id)
-                    .Include(p => p.Author)
-                    .Include(p => p.Comments)
-                    .First();
+                var publication = database
+                    .Blogs
+                    .First()
+                    .Publications
+                    .First(p => p.Id == id);
 
                 if (publication == null)
                 {
                     return HttpNotFound();
                 }
 
-                database.Publications.Remove(publication);
+                database
+                    .Blogs
+                    .FirstOrDefault(null)    
+                    .Publications.Remove(publication);
                 database.SaveChanges();
                 return RedirectToAction("Index");
             }
         }
+
 
         [Authorize]
         [HttpPost]
@@ -202,7 +215,12 @@ namespace BasketballAcademyBlog.Controllers
         public ActionResult Comment ([Bind(Include ="postID, name, message")] int postID, string name, string message)
         {
             var database = new BlogDbContext();
-            Publication publication = database.Publications.Find(postID);
+            Publication publication = database
+                .Blogs
+                .First()
+                .Publications
+                .First(p => p.Id == postID);
+
             Comment comment = new Comment();
             comment.postID = postID;
             comment.Email = User.Identity.Name;
@@ -211,7 +229,10 @@ namespace BasketballAcademyBlog.Controllers
             comment.Body = message;
             comment.Publication = publication;
 
-            database.Comments.Add(comment);
+            database
+                .Blogs
+                .First()
+                .Comments.Add(comment);
             database.SaveChanges();
             return RedirectToAction("ReadPost/" + publication.Id);
         }
@@ -221,14 +242,20 @@ namespace BasketballAcademyBlog.Controllers
         {
             using (var database = new BlogDbContext())
             {
-                Comment comment = database.Comments.Find(id);
+                Comment comment = database
+                    .Blogs
+                    .First()
+                    .Comments.First(c => c.ID == id);
                 if(comment ==null)
                 {
                     return HttpNotFound();
                 }
                 Publication publication = comment.Publication;
                
-                database.Comments.Remove(comment);
+                database
+                    .Blogs
+                    .First()
+                    .Comments.Remove(comment);
                 database.SaveChanges();
 
                 return RedirectToAction("ReadPost/" + publication.Id);

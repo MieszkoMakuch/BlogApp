@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace BasketballAcademyBlog.Models
+namespace BlogApp.Models
 {
     
 
@@ -14,10 +14,11 @@ namespace BasketballAcademyBlog.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
         public virtual IDbSet<Publication> Publications { get; set; }
 
         public virtual DbSet<Comment> Comments { get; set; }
+
+        public virtual IDbSet<Blog> Blogs { get; set; }
 
         public static BlogDbContext Create()
         {

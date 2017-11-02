@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using BasketballAcademyBlog.Models;
+using BlogApp.Models;
 
-namespace BasketballAcademyBlog
+namespace BlogApp
 {
     public partial class Startup
     {
