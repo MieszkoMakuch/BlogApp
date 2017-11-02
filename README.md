@@ -1,6 +1,6 @@
 
 # Blog app
-Simple web blogging application created using ASP.NET MVC and Entity Framework.
+Simple web blogging application created using ASP.NET MVC, Entity Framework and Bootstrap.
 
 ## Online demo on azure
 View a working online demo on Microsoft Azure (it may take a few seconds to deploy):
