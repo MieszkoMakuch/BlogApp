@@ -32,6 +32,13 @@
                 this.CreateUser(context, adminEmail, "Admin", "12345678");
                 this.SetRoleToUser(context, "admin@admin.com", "Admin");
 
+                var janKowalskiEmail = "jankowalski@gmaill.com";
+                this.CreateUser(context, janKowalskiEmail, "Jan Kowalski", "12345678");
+                this.SetRoleToUser(context, janKowalskiEmail, "Admin");
+
+                var adamNowakEmail = "adamnowak@gmaill.com";
+                this.CreateUser(context, adamNowakEmail, "Adam Nowak", "12345678");
+                this.SetRoleToUser(context, adamNowakEmail, "User");
             }
 
             // Populate DB with posts
